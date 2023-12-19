@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import express from "express";
 import morgan from "morgan";
 import db from "./db/index.js";
+import cors from "cors";
 
 dotenv.config();
 const app = express();
@@ -9,6 +10,7 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 // Takes information from a request body and attaches it to request object
+app.use(cors());
 app.use(express.json());
 
 // Get all songs
