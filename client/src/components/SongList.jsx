@@ -38,14 +38,6 @@ function SongList(props) {
               </tr>
             );
           })}
-        {/* <tr>
-          <th scope="row">3</th>
-          <td>
-            <a href="#">Blessed Be Your Name</a>
-          </td>
-          <td>Jun 2, 2023</td>
-          <td>True</td>
-        </tr> */}
       </tbody>
     </table>
   );

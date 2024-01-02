@@ -1,6 +1,5 @@
 import dotenv from "dotenv";
 import express from "express";
-import morgan from "morgan";
 import db from "./db/index.js";
 import cors from "cors";
 
@@ -31,11 +30,9 @@ app.get("/api/v1/songs", async (req, res) => {
 // Get one song
 app.get("/api/v1/songs/:id", async (req, res) => {
   const songId = parseInt(req.params.id);
-  console.log(songId);
 
   try {
     const song = await db.query("SELECT * FROM songs WHERE id = $1", [songId]);
-    console.log(song);
     res.status(200).json({
       status: "success",
       data: {

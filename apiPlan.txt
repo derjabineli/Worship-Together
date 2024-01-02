@@ -1,0 +1,5 @@
+Retrieve all songs  ||  GET    || /api/v1/songs
+Retrieve one song   ||  GET    || /api/v1/songs/:id
+Create song         ||  POST   || /api/v1/songs
+Update song         ||  PUT    || /api/v1/songs/:id
+Delete song         ||  DELETE || /api/v1/songs/:id
