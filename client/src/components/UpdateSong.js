@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import SongGetter from "../apis/SongGetter";
 
 const UpdateSong = () => {
@@ -8,6 +8,7 @@ const UpdateSong = () => {
   const [author, setAuthor] = useState("");
   const [lyrics, setLyrics] = useState("");
   const [live, setLive] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,16 +29,29 @@ const UpdateSong = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const updatedSong = SongGetter.put(`/${id}`, {
+    const res = await SongGetter.put(`/${id}`, {
       name,
       author,
       lyrics,
       live,
     });
+
+    if (res.status === 201) {
+      navigate("/");
+    }
+  };
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    const res = await SongGetter.delete(`/${id}`);
+    if (res.status === 201) {
+      navigate("/");
+    }
   };
 
   return (
-    <div>
+    <div className="container">
+      <h1>{name}</h1>
       <form action="">
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
@@ -109,6 +123,9 @@ const UpdateSong = () => {
           className="btn btn-primary"
         >
           Save
+        </button>
+        <button onClick={handleDelete} type="submit" className="btn btn-danger">
+          Delete
         </button>
       </form>
     </div>
